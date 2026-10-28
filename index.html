@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>源氏槟榔 | Genji Betel</title>
+  <meta name="description" content="源氏槟榔 — 以源为始，以氏为尊。精选真槟，香远益清。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c41e3a;
+      --red-dark: #9b1b2f;
+      --gold: #c9a227;
+      --gold-light: #e8d48b;
+      --black: #0d0d0d;
+      --dark: #1a1a1a;
+      --gray: #2a2a2a;
+      --text: #f5f0e6;
+      --muted: #a89f8f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4vw;
+      background: rgba(13, 13, 13, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+
+    .logo span {
+      color: var(--text);
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 4vw 4rem;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(196, 30, 58, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(201, 162, 39, 0.08) 0%, transparent 40%),
+        var(--black);
+    }
+
+    .hero-ornament {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 40px rgba(201, 162, 39, 0.25);
+    }
+
+    .hero .en {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      letter-spacing: 0.4em;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+    }
+
+    .slogan {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      letter-spacing: 0.3em;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .slogan-sub {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.9rem 2.8rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      font-size: 0.95rem;
+      transition: all 0.35s;
+      background: transparent;
+    }
+
+    .cta:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ========== SECTION COMMON ========== */
+    section {
+      padding: 6rem 4vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title .line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1rem;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      font-size: 0.95rem;
+    }
+
+    /* ========== ABOUT ========== */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .about-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .seal-placeholder {
+      width: 280px;
+      height: 280px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, rgba(196, 30, 58, 0.08), transparent 70%);
+      position: relative;
+    }
+
+    .seal-placeholder::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(196, 30, 58, 0.4);
+      border-radius: 50%;
+    }
+
+    .seal-placeholder .star {
+      font-size: 2.2rem;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .seal-placeholder .cn {
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .seal-placeholder .en {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ========== PRODUCTS ========== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--dark);
+      border: 1px solid rgba(201, 162, 39, 0.12);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .product-card:hover {
+      border-color: rgba(201, 162, 39, 0.35);
+      transform: translateY(-6px);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--gold);
+    }
+
+    .product-card h3 {
+      font-size: 1.25rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+      color: var(--gold-light);
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ========== VALUES ========== */
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .value-item {
+      padding: 2rem 1.5rem;
+    }
+
+    .value-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .value-item h3 {
+      font-size: 1.15rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .value-item p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-box {
+      background: var(--dark);
+      border: 1px solid rgba(201, 162, 39, 0.15);
+      padding: 3.5rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-box h3 {
+      font-size: 1.4rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 2;
+    }
+
+    .contact-info strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid rgba(201, 162, 39, 0.12);
+      padding: 2.5rem 4vw;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer .brand {
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .values {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .hero h1 {
+        letter-spacing: 0.15em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">源氏<span>GENJI</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">品牌</a></li>
+      <li><a href="#products">产品</a></li>
+      <li><a href="#spirit">理念</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-ornament"></div>
+    <h1>源氏槟榔</h1>
+    <div class="en">Genji Betel</div>
+    <p class="slogan">以源为始 · 以氏为尊</p>
+    <p class="slogan-sub">精选真槟 · 香远益清</p>
+    <a href="#products" class="cta">探索产品</a>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">
+      <h2>关于源氏</h2>
+      <div class="line"></div>
+      <p>ABOUT GENJI</p>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <h3>源起东方，氏传经典</h3>
+        <p>
+          源氏槟榔，取名自经典文化意象，承袭东方礼序与匠心。我们精选优质槟榔原料，以严谨工艺与现代标准，呈献层次分明、香气悠长的槟榔体验。
+        </p>
+        <p>
+          「以源为始，以氏为尊」——从源头把控品质，以尊贵标准对待每一颗果实。无论日常品鉴还是礼赠友人，源氏都力求成为值得信赖的一品之选。
+        </p>
+        <p>
+          公司名称：源氏槟榔有限公司<br />
+          国际品牌：Genji Betel
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="seal-placeholder">
+          <div class="star">★</div>
+          <div class="cn">源氏槟榔</div>
+          <div class="en">GENJI BETEL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="section-title">
+      <h2>精选产品</h2>
+      <div class="line"></div>
+      <p>PRODUCTS</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">◆</div>
+        <h3>源氏经典</h3>
+        <p>传统配方，香气醇厚，口感层次丰富，适合日常品鉴与老饕之选。</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">◇</div>
+        <h3>源氏尊品</h3>
+        <p>精选原料，工艺更细，香远益清，定位礼赠与高端场景。</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">○</div>
+        <h3>源氏原味</h3>
+        <p>保留槟榔本真风味，清爽回甘，适合追求自然口感的消费者。</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">△</div>
+        <h3>源氏礼盒</h3>
+        <p>典雅包装，多规格组合，便于商务往来与节日馈赠。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPIRIT / VALUES -->
+  <section id="spirit">
+    <div class="section-title">
+      <h2>品牌理念</h2>
+      <div class="line"></div>
+      <p>OUR SPIRIT</p>
+    </div>
+    <div class="values">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <h3>以源为始</h3>
+        <p>从原料源头严选，坚持品质可追溯，拒绝敷衍。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <h3>以氏为尊</h3>
+        <p>以尊贵标准对待产品与用户，细节体现敬意。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <h3>香远益清</h3>
+        <p>追求悠长余韵与干净回味，让每一次品鉴都值得回味。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>联系我们</h2>
+      <div class="line"></div>
+      <p>CONTACT</p>
+    </div>
+    <div class="contact-box">
+      <h3>源氏槟榔有限公司</h3>
+      <div class="contact-info">
+        <p><strong>品牌</strong>　源氏槟榔 / Genji Betel</p>
+        <p><strong>邮箱</strong>　contact@genjibetel.com</p>
+        <p><strong>电话</strong>　12345654321</p>
+        <p><strong>地址</strong>　河北外国语学院A区五号楼524</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="brand">源氏槟榔 · Genji Betel</div>
+    <p>以源为始，以氏为尊　｜　精选真槟，香远益清</p>
+    <p style="margin-top: 1rem; opacity: 0.6;">© 2026 源氏槟榔有限公司　保留所有权利</p>
+  </footer>
+</body>
+  </html>
